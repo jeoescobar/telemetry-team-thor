@@ -91,18 +91,21 @@ const MainGrid = props =>{
         {/*Altitude vs time */ }
         <Col xs={11} sm={11} md={11} lg={11} xl={11} style={{marginLeft:"10px",marginRight:"10px",marginBottom:"10px", marginTop:"10px"}}>
         <Rotation uscolor={'rgb(255, 99, 132)'} usheight = {250} uswidth={700} uslabel={"Altitude vs Time"}/>
+        <Tag color="geekblue" style={{marginTop:"10px", fontSize: '20px'}}>Altitude:  700 m</Tag> <br/>
         </Col>
 
 
-        <Col xs={12} sm={12} md={12} lg={12} xl={12} style={{marginBottom:"10px", marginTop:"10px"}}>
+        <Col xs={12} sm={12} md={12} lg={12} xl={12} style={{marginBottom:"4px", marginTop:"10px"}}>
         <Row>
         {/*Voltage bar*/ }    
         <Col xs={11} sm={11} md={11} lg={11} xl={11} style={{marginRight:"10px"}}>
             <VertBar usheight = {35} uswidth={50}/>
+            <Tag color="geekblue" style={{marginTop:"15px", fontSize: '20px'}}>Voltage:  9 V</Tag> <br/>
         </Col>
         {/*Temperature bar*/ }  
         <Col xs={12} sm={12} md={12} lg={12} xl={12}>
             <TempBar usheight = {30} uswidth={50}   />
+            <Tag color="geekblue" style={{marginTop:"15px", fontSize: '20px'}}>Temperature:  350 K </Tag> <br/>
         </Col>
         </Row>
         
@@ -111,7 +114,7 @@ const MainGrid = props =>{
 
 
 
-        <Row style={{"margin-bottom": "30px","background-color": "rgba(211, 211, 211, 0.6)"}}>
+        <Row style={{"margin-bottom": "17px","background-color": "rgba(211, 211, 211, 0.6)"}}>
         {/*Telemetry TeamID, Mission Time, Packet Count */}
         <Col xs={12} sm={12} md={12} lg={12} xl={12} >
         <Tag color="geekblue" style={{marginTop:"15px", fontSize: '25px'}}>Team ID : 2092</Tag> <br/>
@@ -131,11 +134,11 @@ const MainGrid = props =>{
         <Row style={{"margin-bottom": "30px","background-color": "rgba(211, 211, 211, 0.6)"}}>
         {/*GPS */}
         <Col xs={12} sm={12} md={12} lg={12} xl={12} >
-        <Tag color="geekblue" style={{marginTop:"15px", fontSize: '25px'}}>GPS Time : 1500 s</Tag> <br/>
-                <Tag color="geekblue" style={{marginTop:"15px", fontSize: '25px'}}>GPS Latitude : 19.512437</Tag> <br/>
-                <Tag color="geekblue" style={{marginTop:"15px", fontSize: '25px'}}>GPS Longitude : -99.126397</Tag> <br/>
-                <Tag color="geekblue" style={{marginTop:"15px", fontSize: '20px'}}>GPS Altitude : 700 m</Tag> <br/>
-                <Tag color="geekblue" style={{marginTop:"15px", fontSize: '20px'}}>GPS Sat : 3
+        <Tag color="geekblue" style={{marginTop:"10px", fontSize: '25px'}}>GPS Time : 1500 s</Tag> <br/>
+                <Tag color="geekblue" style={{marginTop:"10px", fontSize: '25px'}}>GPS Latitude : 19.512437</Tag> <br/>
+                <Tag color="geekblue" style={{marginTop:"10px", fontSize: '25px'}}>GPS Longitude : -99.126397</Tag> <br/>
+                <Tag color="geekblue" style={{marginTop:"10px", fontSize: '20px'}}>GPS Altitude : 700 m</Tag> <br/>
+                <Tag color="geekblue" style={{marginTop:"10px", fontSize: '20px'}}>GPS Sat : 3
                 </Tag> <br/>
         </Col>
 
@@ -169,7 +172,7 @@ const MainGrid = props =>{
                 <Row>
                 <Col xs={24} sm={24} md={24} lg={24} xl={24} >
                 <TempBar uscolor={'rgb(255, 99, 132)'} usheight = {100} uswidth={700}></TempBar>
-                <Tag color="geekblue" style={{marginTop:"10px", fontSize: '25px'}}>Temperature : 350 k</Tag> <br/>
+                <Tag color="geekblue" style={{marginTop:"5px", fontSize: '25px'}}>Temperature : 350 k</Tag> <br/>
                 </Col>
                 </Row>
                 
