@@ -3,7 +3,14 @@ import { Layout, Breadcrumb, Button, Radio, Row, Col, Descriptions, Tag, Divider
 import '../styles/header-styles.css'
 import { PoweroffOutlined,DownloadOutlined,ClockCircleOutlined } from '@ant-design/icons';
 import Rotation from './Rotation'
+import TempBar from './TempBar'
+import VertBar from './VertBar'
+import { Bar } from 'react-chartjs-2';
 const {  Content, Footer } = Layout;
+
+
+
+
 
 
 const MainGrid = props =>{
@@ -78,29 +85,111 @@ const MainGrid = props =>{
 
 
 
-        <Col xs={12} sm={12} md={12} lg={12} xl={12} style={{"backgroundColor":"red"}}>
-          Col
+        <Col xs={12} sm={12} md={12} lg={12} xl={12} style={{"backgroundColor":"rgba(111,111,111,0.4)"}}>
+        <Row style={{"margin-bottom": "30px"}}>
+        {/*Altitude vs time */ }
+        <Col xs={11} sm={11} md={11} lg={11} xl={11} style={{marginLeft:"10px",marginRight:"10px",marginBottom:"10px", marginTop:"10px"}}>
+        <Rotation uscolor={'rgb(255, 99, 132)'} usheight = {250} uswidth={700} uslabel={"Altitude vs Time"}/>
         </Col>
 
 
+        <Col xs={12} sm={12} md={12} lg={12} xl={12} style={{marginBottom:"10px", marginTop:"10px"}}>
+        <Row>
+        {/*Voltage bar*/ }    
+        <Col xs={11} sm={11} md={11} lg={11} xl={11} style={{marginRight:"10px"}}>
+            <VertBar usheight = {35} uswidth={50}/>
+        </Col>
+        {/*Temperature bar*/ }  
+        <Col xs={12} sm={12} md={12} lg={12} xl={12}>
+            <TempBar usheight = {30} uswidth={50}   />
+        </Col>
+        </Row>
+        
+        </Col>
+        </Row>
 
+
+
+        <Row style={{"margin-bottom": "30px","background-color": "rgba(211, 211, 211, 0.6)"}}>
+        {/*Telemetry TeamID, Mission Time, Packet Count */}
+        <Col xs={12} sm={12} md={12} lg={12} xl={12} >
+        <Tag color="geekblue" style={{marginTop:"15px", fontSize: '25px'}}>Team ID : 2092</Tag> <br/>
+                <Tag color="geekblue" style={{marginTop:"15px", fontSize: '25px'}}>Mission Time : 13:15:24</Tag> <br/>
+                <Tag color="geekblue" style={{marginTop:"15px", fontSize: '25px'}}>Packet Count : 108</Tag> <br/>
+        </Col>
+
+        {/*Map */}
+        <Col xs={12} sm={12} md={12} lg={12} xl={12} >
+            asdasd
+        </Col>
+        </Row>
+
+
+
+
+        <Row style={{"margin-bottom": "30px","background-color": "rgba(211, 211, 211, 0.6)"}}>
+        <Col xs={12} sm={12} md={12} lg={12} xl={12} >asdasd</Col>
+        <Col xs={12} sm={12} md={12} lg={12} xl={12} >asdasd</Col>
+        </Row>
+        </Col>
+
+
+        
 
         <Col xs={8} sm={8} md={8} lg={8} xl={8} >
-            <Row style={{"padding-bottom": "30px"}}>
-                <Col xs={24} sm={24} md={24} lg={24} xl={24} style={{"backgroundColor":"pink"}}>
-                <Rotation/>
+
+
+            <Row style={{"padding-bottom": "30px","background-color": "rgba(211, 211, 211, 0.6)"}}>
+            
+            <Divider style={{"color":"black"}}>SP 1</Divider>
+            <Col xs={24} sm={24} md={24} lg={24} xl={24} >
+                <Row>
+                <Col xs={24} sm={24} md={24} lg={24} xl={24} >
+                <Rotation uscolor={'rgb(255, 99, 132)'} usheight = {250} uswidth={700} uslabel={"Rotation Rate"}/>
                 </Col>
+                
+                </Row>
+                <Row>
+                <Col xs={24} sm={24} md={24} lg={24} xl={24} >
+                <TempBar uscolor={'rgb(255, 99, 132)'} usheight = {100} uswidth={700}></TempBar>
+                </Col>
+                </Row>
+                
+            </Col>
+                
+                
+                
+                
             </Row>
             
-            <Row >
-                <Col xs={24} sm={24} md={24} lg={24} xl={24} style={{"backgroundColor":"pink"}}>
-                    asdasdasdadasda
+
+
+            <Row style={{"background-color": "rgba(211, 211, 211, 0.6)"}}>
+            
+            <Divider style={{"color":"black"}}>SP 2</Divider>
+            <Col xs={24} sm={24} md={24} lg={24} xl={24} >
+                <Row>
+                <Col xs={24} sm={24} md={24} lg={24} xl={24} >
+                <Rotation uscolor={'rgba(13, 99, 132)'} usheight = {250} uswidth={700} uslabel={"Rotation Rate"}/>
                 </Col>
+                </Row>
+                <Row>
+                <Col xs={24} sm={24} md={24} lg={24} xl={24} >
+                <TempBar uscolor={'rgba(13, 99, 132)'} usheight = {100} uswidth={700}></TempBar>
+                </Col>
+                </Row>
+                
+                </Col>
+                
+                
+                
+                
             </Row>
+
         </Col>
 
-
-
+        
+        
 
 
 

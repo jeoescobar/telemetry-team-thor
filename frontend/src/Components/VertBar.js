@@ -2,28 +2,29 @@ import {React} from 'react'
 import { Layout, Breadcrumb, Button, Radio, Row, Col, Descriptions, Tag, Divider } from 'antd';
 import '../styles/header-styles.css'
 import { PoweroffOutlined,DownloadOutlined,ClockCircleOutlined } from '@ant-design/icons';
-import { Line } from 'react-chartjs-2';
+import { Bar } from 'react-chartjs-2';
 const {  Content, Footer } = Layout;
 
 
 
 
+const VertBar = props =>{
 
-const Rotation = props =>{
     const data = {
-        labels: ['1', '2', '3', '4', '5', '6'],
+        labels: ['Voltage'],
         datasets: [
           {
-            label: props.uslabel,
-            data: [12, 19, 3, 5, 2, 3],
-            fill: false,
-            backgroundColor: props.uscolor,
-            borderColor: props.uscolor,
-            
+            label: 'Voltage',
+            data: [12],
+            backgroundColor: [
+              'rgba(13, 99, 132)'
+            ],
+            borderColor: [
+              'rgba(13, 99, 132, 1)'
+            ],
+            borderWidth: 1,
           },
-        
         ],
-        
       }
       
       const options = {
@@ -37,18 +38,13 @@ const Rotation = props =>{
           ],
         },
       }
-
-
-
-
     return(
         <div style={{backgroundColor:"#FFF"}}>
-            <Line data={data} options={options}  width={props.uswidth} height={props.usheight} />
+            <Bar data={data} options={options} width={props.uswidth} height={props.usheight} />
         </div>
         
 
     )
-
 }
 
-export default Rotation;
+export default VertBar;
