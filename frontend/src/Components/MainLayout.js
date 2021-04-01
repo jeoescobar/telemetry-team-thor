@@ -12,7 +12,7 @@ const MainLayout = props =>{
     <MainHeader></MainHeader> 
 
 
-    <Content className="site-layout" style={{ padding: '0 50px',  "background-image": "url(\"https://wallpaperaccess.com/full/138014.jpg\")" }}>
+    <Content className="site-layout" style={{ padding: '0 50px',  "background-image": "url(\"https://uni.wroc.pl/wp-content/uploads/2018/12/milky-way.jpg\")" }}>
       
       <MainGrid ></MainGrid>
 

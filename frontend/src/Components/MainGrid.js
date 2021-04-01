@@ -6,6 +6,7 @@ import Rotation from './Rotation'
 import TempBar from './TempBar'
 import VertBar from './VertBar'
 import { Bar } from 'react-chartjs-2';
+import TrackingMap from './TrackingMap'
 const {  Content, Footer } = Layout;
 
 
@@ -120,7 +121,7 @@ const MainGrid = props =>{
 
         {/*Map */}
         <Col xs={12} sm={12} md={12} lg={12} xl={12} >
-            asdasd
+            <TrackingMap/>
         </Col>
         </Row>
 
@@ -128,8 +129,22 @@ const MainGrid = props =>{
 
 
         <Row style={{"margin-bottom": "30px","background-color": "rgba(211, 211, 211, 0.6)"}}>
-        <Col xs={12} sm={12} md={12} lg={12} xl={12} >asdasd</Col>
-        <Col xs={12} sm={12} md={12} lg={12} xl={12} >asdasd</Col>
+        {/*GPS */}
+        <Col xs={12} sm={12} md={12} lg={12} xl={12} >
+        <Tag color="geekblue" style={{marginTop:"15px", fontSize: '25px'}}>GPS Time : 1500 s</Tag> <br/>
+                <Tag color="geekblue" style={{marginTop:"15px", fontSize: '25px'}}>GPS Latitude : 19.512437</Tag> <br/>
+                <Tag color="geekblue" style={{marginTop:"15px", fontSize: '25px'}}>GPS Longitude : -99.126397</Tag> <br/>
+                <Tag color="geekblue" style={{marginTop:"15px", fontSize: '20px'}}>GPS Altitude : 700 m</Tag> <br/>
+                <Tag color="geekblue" style={{marginTop:"15px", fontSize: '20px'}}>GPS Sat : 3
+                </Tag> <br/>
+        </Col>
+
+        {/*Elevation and azimut */}
+        <Col xs={12} sm={12} md={12} lg={12} xl={12} >
+        <Tag color="geekblue" style={{marginTop:"15px", fontSize: '25px'}}>Elevation : 9.81 °</Tag> <br/>
+        <Tag color="geekblue" style={{marginTop:"15px", fontSize: '25px'}}>Azimut : 69.20 °</Tag> <br/>
+        <Tag color="geekblue" style={{marginTop:"15px", fontSize: '25px'}}>GS to CanSat:  1000 m</Tag> <br/>
+            </Col>
         </Row>
         </Col>
 
@@ -138,20 +153,23 @@ const MainGrid = props =>{
 
         <Col xs={8} sm={8} md={8} lg={8} xl={8} >
 
-
-            <Row style={{"padding-bottom": "30px","background-color": "rgba(211, 211, 211, 0.6)"}}>
+            {/*SP1 COLUMN */}
+            <Row style={{"padding-bottom": "0px","background-color": "rgba(211, 211, 211, 0.6)"}}>
             
             <Divider style={{"color":"black"}}>SP 1</Divider>
+            <Tag color="geekblue" style={{marginTop:"0px", fontSize: '25px'}}>Altitude : 600 m</Tag> <br/>
+            <Tag color="geekblue" style={{marginTop:"0px", fontSize: '25px'}}>Rotation Rate : 60 rpm</Tag> 
             <Col xs={24} sm={24} md={24} lg={24} xl={24} >
                 <Row>
                 <Col xs={24} sm={24} md={24} lg={24} xl={24} >
-                <Rotation uscolor={'rgb(255, 99, 132)'} usheight = {250} uswidth={700} uslabel={"Rotation Rate"}/>
+                <Rotation uscolor={'rgb(255, 99, 132)'} usheight = {200} uswidth={700} uslabel={"Rotation Rate"}/>
                 </Col>
                 
                 </Row>
                 <Row>
                 <Col xs={24} sm={24} md={24} lg={24} xl={24} >
                 <TempBar uscolor={'rgb(255, 99, 132)'} usheight = {100} uswidth={700}></TempBar>
+                <Tag color="geekblue" style={{marginTop:"10px", fontSize: '25px'}}>Temperature : 350 k</Tag> <br/>
                 </Col>
                 </Row>
                 
@@ -167,15 +185,18 @@ const MainGrid = props =>{
             <Row style={{"background-color": "rgba(211, 211, 211, 0.6)"}}>
             
             <Divider style={{"color":"black"}}>SP 2</Divider>
+            <Tag color="geekblue" style={{marginTop:"0px", fontSize: '25px'}}>Altitude : 600 m</Tag> <br/>
+            <Tag color="geekblue" style={{marginTop:"0px", fontSize: '25px'}}>Rotation Rate : 60 rpm</Tag> 
             <Col xs={24} sm={24} md={24} lg={24} xl={24} >
                 <Row>
                 <Col xs={24} sm={24} md={24} lg={24} xl={24} >
-                <Rotation uscolor={'rgba(13, 99, 132)'} usheight = {250} uswidth={700} uslabel={"Rotation Rate"}/>
+                <Rotation uscolor={'rgba(13, 99, 132)'} usheight = {200} uswidth={700} uslabel={"Rotation Rate"}/>
                 </Col>
                 </Row>
                 <Row>
                 <Col xs={24} sm={24} md={24} lg={24} xl={24} >
                 <TempBar uscolor={'rgba(13, 99, 132)'} usheight = {100} uswidth={700}></TempBar>
+                <Tag color="geekblue" style={{marginTop:"10px", fontSize: '25px'}}>Temperature : 350 k</Tag> <br/>
                 </Col>
                 </Row>
                 
