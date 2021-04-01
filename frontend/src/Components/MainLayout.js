@@ -12,9 +12,9 @@ const MainLayout = props =>{
     <MainHeader></MainHeader> 
 
 
-    <Content className="site-layout" style={{ padding: '0 50px', marginTop: 64 }}>
+    <Content className="site-layout" style={{ padding: '0 50px',  "background-image": "url(\"https://wallpaperaccess.com/full/138014.jpg\")" }}>
       
-      <MainGrid></MainGrid>
+      <MainGrid ></MainGrid>
 
     </Content>
     <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>

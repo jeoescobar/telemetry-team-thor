@@ -1,7 +1,7 @@
 import {React} from 'react'
 import { Layout, Menu, Image} from 'antd';
 import '../styles/header-styles.css'
-import Navbar from 'react-bootstrap/Navbar'
+
 import upiitalogo from '../img/upiitalogo.png'
 import ipnlogo from '../img/ipnlogo.png'
 import TeamThor1 from '../img/TeamThor1.png'
