@@ -13,7 +13,7 @@ const token = 'pk.eyJ1IjoiamVvLWVzY29iYXIiLCJhIjoiY2ttejl1d2RhMGJ0dTJ1bm56Mjl4bm
 
 const TrackingMap = props =>{
     const [viewport, setViewport] = useState({
-        width: 450,
+        width: 550,
         height: 400, 
         latitude: 19.512437395443325,
         longitude: -99.1263971539757,

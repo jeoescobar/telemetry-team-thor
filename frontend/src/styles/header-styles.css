@@ -12,4 +12,5 @@
   .modified-item:hover {
     border-bottom: 2px solid transparent !important;
     color:  #fff !important;
+    text-align: center;
   }

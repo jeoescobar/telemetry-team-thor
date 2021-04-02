@@ -8,23 +8,17 @@ const {  Content, Footer } = Layout;
 const MainLayout = props =>{
   
     return(
-  <Layout>
+  <Layout >
     <MainHeader></MainHeader> 
 
 
-    <Content className="site-layout" style={{ padding: '0 50px',  "background-image": "url(\"https://uni.wroc.pl/wp-content/uploads/2018/12/milky-way.jpg\")" }}>
+    <Content className="site-layout" style={{"background-size": "contain" ,padding: '0 60px',  "background-image": "url(\"https://www.pixel4k.com/wp-content/uploads/2018/12/dark-milky-way-galaxy-4k_1546279224.jpg\")" }}>
       
       <MainGrid ></MainGrid>
 
     </Content>
-    <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
+    <Footer  style={{ textAlign: 'center', "background-color": "rgba(0,0,0,1)","color": "#D3D3D3"}}>UPIITA-IPN ©2021 Created by Team Thor</Footer>
     <>
-    <Button type="primary">Primary Button</Button>
-    <Button>Default Button</Button>
-    <Button type="dashed">Dashed Button</Button>
-    <br />
-    <Button type="text">Text Button</Button>
-    <Button type="link">Link Button</Button>
   </>
   </Layout>
     )
