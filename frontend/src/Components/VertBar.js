@@ -17,10 +17,10 @@ const VertBar = props =>{
             label: 'Voltage',
             data: [12],
             backgroundColor: [
-              'rgba(13, 99, 132)'
+              props.uscolor
             ],
             borderColor: [
-              'rgba(13, 99, 132, 1)'
+              props.uscolor
             ],
             borderWidth: 1,
           },

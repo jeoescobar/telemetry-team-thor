@@ -9,11 +9,6 @@ import { Bar } from 'react-chartjs-2';
 import TrackingMap from './TrackingMap'
 const {  Content, Footer } = Layout;
 
-
-
-
-
-
 const MainGrid = props =>{
     return(
         <Row style={{"padding-top":"40px","padding-bottom":"40px"}}>
@@ -88,7 +83,7 @@ const MainGrid = props =>{
         <Row style={{"margin-bottom": "30px","backgroundColor":"rgba(14,21,53,0.7)"}}>
         {/*Altitude vs time */ }
         <Col xs={11} sm={11} md={11} lg={11} xl={11} style={{marginLeft:"10px",marginRight:"10px",marginBottom:"10px", marginTop:"10px"}}>
-        <Rotation uscolor={'rgb(255, 99, 132)'} usheight = {250} uswidth={700} uslabel={"Altitude vs Time"}/>
+        <Rotation uscolor={'rgb(144, 12, 63)'} usheight = {250} uswidth={700} uslabel={"Altitude vs Time"}/>
         <Tag color="#0E1535" style={{marginTop:"10px", fontSize: '20px'}}>Altitude:  700 m</Tag> <br/>
         </Col>
 
@@ -97,12 +92,12 @@ const MainGrid = props =>{
         <Row>
         {/*Voltage bar*/ }    
         <Col xs={11} sm={11} md={11} lg={11} xl={11} style={{marginRight:"10px"}}>
-            <VertBar usheight = {35} uswidth={50}/>
+            <VertBar usheight = {35} uswidth={50} uscolor={'rgb(255, 195, 0)'}/>
             <Tag color="#0E1535" style={{marginTop:"15px", fontSize: '20px'}}>Voltage:  9 V</Tag> <br/>
         </Col>
         {/*Temperature bar*/ }  
         <Col xs={12} sm={12} md={12} lg={12} xl={12}>
-            <TempBar usheight = {30} uswidth={50}   />
+            <TempBar usheight = {32} uswidth={50} uscolor={'rgb(144, 12, 63)'}  />
             <Tag color="#0E1535" style={{marginTop:"15px", fontSize: '20px'}}>Temperature:  350 K </Tag> <br/>
         </Col>
         </Row>
@@ -172,13 +167,13 @@ const MainGrid = props =>{
             <Col xs={24} sm={24} md={24} lg={24} xl={24} >
                 <Row>
                 <Col xs={24} sm={24} md={24} lg={24} xl={24} >
-                <Rotation uscolor={'rgb(255, 99, 132)'} usheight = {200} uswidth={700} uslabel={"Rotation Rate"}/>
+                <Rotation uscolor={'rgb(0, 166, 30)'} usheight = {200} uswidth={700} uslabel={"Rotation Rate"}/>
                 </Col>
                 
                 </Row>
                 <Row>
                 <Col xs={24} sm={24} md={24} lg={24} xl={24} >
-                <TempBar uscolor={'rgb(255, 99, 132)'} usheight = {100} uswidth={700}></TempBar>
+                <TempBar uscolor={'rgb(0, 166, 30)'} usheight = {100} uswidth={700}></TempBar>
                 <Tag color="#0E1535" style={{marginTop:"5px", fontSize: '20px'}}>Temperature : 350 k</Tag> <br/>
                 </Col>
                 </Row>
@@ -201,12 +196,12 @@ const MainGrid = props =>{
             <Col xs={24} sm={24} md={24} lg={24} xl={24} >
                 <Row>
                 <Col xs={24} sm={24} md={24} lg={24} xl={24} >
-                <Rotation uscolor={'rgba(13, 99, 132)'} usheight = {200} uswidth={700} uslabel={"Rotation Rate"}/>
+                <Rotation uscolor={'rgba(199, 0, 57)'} usheight = {200} uswidth={700} uslabel={"Rotation Rate"}/>
                 </Col>
                 </Row>
                 <Row>
                 <Col xs={24} sm={24} md={24} lg={24} xl={24} >
-                <TempBar uscolor={'rgba(13, 99, 132)'} usheight = {100} uswidth={700}></TempBar>
+                <TempBar uscolor={'rgba(199, 0, 57)'} usheight = {100} uswidth={700}></TempBar>
                 <Tag color="#0E1535" style={{marginTop:"10px", fontSize: '20px'}}>Temperature : 350 k</Tag> <br/>
                 </Col>
                 </Row>
