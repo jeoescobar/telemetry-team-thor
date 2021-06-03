@@ -5,6 +5,10 @@ const serialport = require('serialport');
 const http = require('http');
 const socketIo = require('socket.io')
 const osutils = require('os-utils');
+const splitFunction = require('./split');
+
+require('events').EventEmitter.prototype._maxListeners = 70;
+require('events').defaultMaxListeners = 70;
 
 const app = express();
 app.set('port', 4000);
@@ -55,6 +59,16 @@ io.on('connection', client =>{
         console.log('Data : ' + line);
         console.log("Primer caracter"+ line.substring(30,38))
         
+        if(line.split(",").length == 19)
+        {
+
+        var objTelemetry = splitFunction.myFunction(line);
+        
+        
+        console.log("Esta es la telemetria " + objTelemetry);
+
+
+
         client.emit('cpu',{
             name: tick++,
             value: line.substring(0,7)});
@@ -74,7 +88,7 @@ io.on('connection', client =>{
         client.emit('ultimo',{
             name: tick2++,
             value: line.substring(30,38)});
-        
+        }
 
     });
 
