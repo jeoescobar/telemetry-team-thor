@@ -31,7 +31,8 @@ function myFunction() {
           CMDECHO = res[18];
       }
       //document.getElementById("demo").innerHTML = res;
-        console.log(res);
+      /**
+      console.log(res);
       console.log(TEAMID);
       console.log(MISSIONTIME);
       console.log(PACKETCOUNT);
@@ -51,4 +52,5 @@ function myFunction() {
       console.log(SP1PACKETCOUNT);
       console.log(SP2PACKETCOUNT);
       console.log(CMDECHO);
+       */
   }
