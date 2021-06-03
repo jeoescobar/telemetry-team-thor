@@ -1,7 +1,8 @@
 import {React} from 'react'
 import { Layout, Breadcrumb, Button, Radio, Row, Col, Descriptions, Tag, Divider } from 'antd';
 import '../styles/header-styles.css'
-import { PoweroffOutlined,DownloadOutlined,ClockCircleOutlined } from '@ant-design/icons';
+import {myFunction} from '../split.js';
+import { PoweroffOutlined,DownloadOutlind,ClockCircleOutlined, PrinterFilled } from '@ant-design/icons';
 import Rotation from './Rotation'
 import TempBar from './TempBar'
 import VertBar from './VertBar'
@@ -9,11 +10,33 @@ import { Bar } from 'react-chartjs-2';
 import TrackingMap from './TrackingMap'
 const {  Content, Footer } = Layout;
 
+let variables = myFunction();
+
+var TEAMID = variables.TEAMID,
+    MISSIONTIME=variables.MISSIONTIME,
+    PACKETCOUNT=variables.PACKETCOUNT,
+    PACKETTYPE=variables.PACKETTYPE,
+    MODE=variables.MODE,
+    SP1RELEASED=variables.SP1RELEASED,
+    SP2RELEASED=variables.SP2RELEASED,
+    ALTITUDE=variables.ALTITUDE,
+    TEMP=variables.TEMP,
+    VOLTAGE=variables.VOLTAGE,
+    GPSTIME=variables.GPSTIME,
+    GPSLATITUDE=variables.GPSLATITUDE,
+    GPSLONGITUDE=variables.GPSLONGITUDE,
+    GPSALTITUDE=variables.GPSALTITUDE,
+    GPSSATS=variables.GPSSATS,
+    SOFTWARESTATE=variables.SOFTWARESTATE,
+    SP1PACKETCOUNT=variables.SP1RELEASED,
+    SP2PACKETCOUNT=variables.SP2RELEASED,
+    CMDECHO=variables.CMDECHO;
+
+
 const MainGrid = props =>{
     return(
         <Row style={{"padding-top":"40px","padding-bottom":"40px"}}>
         <Col xs={4} sm={4} md={4} lg={4} xl={4} >
-
             <Row style={{"padding-bottom": "30px","background-color": "rgba(14,21,53,0.7)"} }>
                 <Col xs={24} sm={24} md={24} lg={24} xl={24} style={{"background-color": "rgba(14,21,53,0)"}}>
                 <Divider style={{"font-size": "25px","color":"white"}}>Commands</Divider>
@@ -110,7 +133,8 @@ const MainGrid = props =>{
         <Row style={{"margin-bottom": "17px","background-color": "rgba(14,21,53,0.7)"}}>
         {/*Telemetry TeamID, Mission Time, Packet Count */}
         <Col xs={11} sm={11} md={11} lg={11} xl={11} >
-        <Tag color="#0E1535" style={{marginTop:"15px", fontSize: '25px', marginLeft:"175px"}}>Team ID : 2092</Tag> <br/>
+        <Tag color="#0E1535" style={{marginTop:"15px", fontSize: '25px', marginLeft:"175px"}} >Team ID : {TEAMID}</Tag> <br/>
+        
                 <Tag color="#0E1535" style={{marginTop:"15px", fontSize: '25px', marginLeft:"125px"}}>Mission Time : 13:15:24</Tag> <br/>
                 <Tag color="#0E1535" style={{marginTop:"15px", fontSize: '25px', marginLeft:"155px"}}>Packet Count : 108</Tag> <br/>
                 <br/><br/>

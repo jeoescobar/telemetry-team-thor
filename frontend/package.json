@@ -10,6 +10,7 @@
     "antd": "^4.15.0",
     "bootstrap": "^4.6.0",
     "chart.js": "^2.9.4",
+    "init": "^0.1.2",
     "os-utils": "0.0.14",
     "react": "^17.0.2",
     "react-bootstrap": "^1.5.2",
