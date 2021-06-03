@@ -30,7 +30,7 @@ function myFunction() {
           SP2PACKETCOUNT = res[17];
           CMDECHO = res[18];
       }
-      return(){
+      return{
           TEAMID,
           MISSIONTIME,
           PACKETCOUNT,
