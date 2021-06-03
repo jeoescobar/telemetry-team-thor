@@ -36,19 +36,50 @@ serialport.list(function (err, ports) {
 */
 
 const port = new serialport(
-    'COM1',
-    {baudRate: 9600}
+    'COM5',
+    {baudRate: 115200}
 );
 
 const parser = new serialport.parsers.Readline();
 port.pipe(parser);
 
-parser.on('data', (line) =>{
-    console.log('Data : ' + line);
-});
+
+
+
 
 let tick = 0;
+let tick2 = 0;
 io.on('connection', client =>{
+    
+    parser.on('data', (line) =>{
+        console.log('Data : ' + line);
+        console.log("Primer caracter"+ line.substring(30,38))
+        
+        client.emit('cpu',{
+            name: tick++,
+            value: line.substring(0,7)});
+
+        client.emit('temper',{
+            name: tick2++,
+            value: line.substring(24,28)});
+
+        client.emit('segundo',{
+            name: tick2++,
+            value: line.substring(9,15)});
+            
+        client.emit('tercero',{
+            name: tick2++,
+            value: line.substring(17,23)});
+        
+        client.emit('ultimo',{
+            name: tick2++,
+            value: line.substring(30,38)});
+        
+
+    });
+
+
+    /*
     setInterval(()=>{
         //Evento
         osutils.cpuUsage((cpuPercent) =>{
@@ -56,10 +87,12 @@ io.on('connection', client =>{
                 name: tick++,
                 value: cpuPercent});
         });
-        console.log("Works");
+        //console.log("Works");
     },1000);
-
+    */
 });
+
+
 
 // Routing
 
