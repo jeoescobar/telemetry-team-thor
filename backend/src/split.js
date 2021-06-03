@@ -30,6 +30,27 @@ function myFunction() {
           SP2PACKETCOUNT = res[17];
           CMDECHO = res[18];
       }
+      return(){
+          TEAMID,
+          MISSIONTIME,
+          PACKETCOUNT,
+          PACKETTYPE,
+          MODE,
+          SP1RELEASED ,
+          SP2RELEASED,
+          ALTITUDE,
+          TEMP,
+          VOLTAGE,
+          GPSTIME,
+          GPSLATITUDE,
+          GPSLONGITUDE,
+          GPSALTITUDE,
+          GPSSATS,
+          SOFTWARESTATE,
+          SP1PACKETCOUNT,
+          SP2PACKETCOUNT,
+          CMDECHO
+      }
       //document.getElementById("demo").innerHTML = res;
       /**
       console.log(res);
