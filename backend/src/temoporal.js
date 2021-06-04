@@ -49,21 +49,19 @@ const port = new serialport(
 const parser = new serialport.parsers.Readline();
 port.pipe(parser);
 
-/*
 parser.on('data', (line) =>{
     console.log('Data : ' + line);
     console.log("Primer caracter"+ line.substring(30,38))
 
 })
-*/
-console.log('ENtra')
+
+
 
 let tick = 0;
 let tick2 = 0;
-
+/*
 io.on('connection', client =>{
     
-    /*
     parser.on('data', (line) =>{
         console.log('Data : ' + line);
         console.log("Primer caracter"+ line.substring(30,38))
@@ -100,7 +98,7 @@ io.on('connection', client =>{
         }
 
     });
-    */
+
 
     
     setInterval(()=>{
@@ -113,7 +111,7 @@ io.on('connection', client =>{
         //console.log("Works");
     },1000);
     
-});  
+});  */
 
 
 
