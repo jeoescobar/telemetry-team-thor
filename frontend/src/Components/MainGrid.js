@@ -28,8 +28,8 @@ var TEAMID = variables.TEAMID,
     GPSALTITUDE=variables.GPSALTITUDE,
     GPSSATS=variables.GPSSATS,
     SOFTWARESTATE=variables.SOFTWARESTATE,
-    SP1PACKETCOUNT=variables.SP1RELEASED,
-    SP2PACKETCOUNT=variables.SP2RELEASED,
+    SP1PACKETCOUNT=variables.SP1PACKETCOUNT,
+    SP2PACKETCOUNT=variables.SP2PACKETCOUNT,
     CMDECHO=variables.CMDECHO;
 
 
@@ -89,12 +89,12 @@ const MainGrid = props =>{
             
             <Row >
                 <Col xs={24} sm={24} md={24} lg={24} xl={24} style={{"background-color": "rgba(14,21,53,0.7)"}}>
-                <Tag color="#0E1535" style={{marginTop:"15px", fontSize: '25px',"font-size": "25px"}}>MODE : Flight</Tag> <br/>
-                <Tag color="#0E1535" style={{marginTop:"15px", fontSize: '25px',"font-size": "20px"}}>SP1 State : Released</Tag> <br/>
-                <Tag color="#0E1535" style={{marginTop:"15px", fontSize: '25px',"font-size": "20px"}}>SP2 State : Released</Tag> <br/>
-                <Tag color="#0E1535" style={{marginTop:"15px", fontSize: '25px',"font-size": "20px"}}>SP1 Count : 54</Tag> <br/>
-                <Tag color="#0E1535" style={{marginTop:"15px", fontSize: '25px',"font-size": "20px"}}>SP2 Count : 54</Tag> <br/>
-                <Tag color="#0E1535" style={{marginTop:"15px", fontSize: '20px',"font-size": "20px"}}>Software State : SP2_RELEASE</Tag> <br/>
+                <Tag color="#0E1535" style={{marginTop:"15px", fontSize: '25px',"font-size": "25px"}}>MODE : {MODE}</Tag> <br/>
+                <Tag color="#0E1535" style={{marginTop:"15px", fontSize: '25px',"font-size": "20px"}}>SP1 State : {SP1RELEASED}</Tag> <br/>
+                <Tag color="#0E1535" style={{marginTop:"15px", fontSize: '25px',"font-size": "20px"}}>SP2 State : {SP2RELEASED}</Tag> <br/>
+                <Tag color="#0E1535" style={{marginTop:"15px", fontSize: '25px',"font-size": "20px"}}>SP1 Count : {SP1PACKETCOUNT}</Tag> <br/>
+                <Tag color="#0E1535" style={{marginTop:"15px", fontSize: '25px',"font-size": "20px"}}>SP2 Count : {SP2PACKETCOUNT}</Tag> <br/>
+                <Tag color="#0E1535" style={{marginTop:"15px", fontSize: '20px',"font-size": "20px"}}>Software State : {SOFTWARESTATE}</Tag> <br/>
 
                 </Col>
             </Row>
@@ -107,7 +107,7 @@ const MainGrid = props =>{
         {/*Altitude vs time */ }
         <Col xs={11} sm={11} md={11} lg={11} xl={11} style={{marginLeft:"10px",marginRight:"10px",marginBottom:"10px", marginTop:"10px"}}>
         <Rotation uscolor={'rgb(144, 12, 63)'} usheight = {250} uswidth={700} uslabel={"Altitude vs Time"}/>
-        <Tag color="#0E1535" style={{marginTop:"10px", fontSize: '20px'}}>Altitude:  700 m</Tag> <br/>
+        <Tag color="#0E1535" style={{marginTop:"10px", fontSize: '20px'}}>Altitude:  {ALTITUDE}</Tag> <br/>
         </Col>
 
 
@@ -116,12 +116,12 @@ const MainGrid = props =>{
         {/*Voltage bar*/ }    
         <Col xs={11} sm={11} md={11} lg={11} xl={11} style={{marginRight:"10px"}}>
             <VertBar usheight = {35} uswidth={50} uscolor={'rgb(255, 195, 0)'}/>
-            <Tag color="#0E1535" style={{marginTop:"15px", fontSize: '20px'}}>Voltage:  9 V</Tag> <br/>
+            <Tag color="#0E1535" style={{marginTop:"15px", fontSize: '20px'}}>Voltage: {VOLTAGE}</Tag> <br/>
         </Col>
         {/*Temperature bar*/ }  
         <Col xs={12} sm={12} md={12} lg={12} xl={12}>
             <TempBar usheight = {32} uswidth={50} uscolor={'rgb(144, 12, 63)'}  />
-            <Tag color="#0E1535" style={{marginTop:"15px", fontSize: '20px'}}>Temperature:  350 K </Tag> <br/>
+            <Tag color="#0E1535" style={{marginTop:"15px", fontSize: '20px'}}>Temperature:  {TEMP} </Tag> <br/>
         </Col>
         </Row>
         
@@ -135,8 +135,8 @@ const MainGrid = props =>{
         <Col xs={11} sm={11} md={11} lg={11} xl={11} >
         <Tag color="#0E1535" style={{marginTop:"15px", fontSize: '25px', marginLeft:"175px"}} >Team ID : {TEAMID}</Tag> <br/>
         
-                <Tag color="#0E1535" style={{marginTop:"15px", fontSize: '25px', marginLeft:"125px"}}>Mission Time : 13:15:24</Tag> <br/>
-                <Tag color="#0E1535" style={{marginTop:"15px", fontSize: '25px', marginLeft:"155px"}}>Packet Count : 108</Tag> <br/>
+                <Tag color="#0E1535" style={{marginTop:"15px", fontSize: '25px', marginLeft:"125px"}}>Mission Time : {MISSIONTIME}</Tag> <br/>
+                <Tag color="#0E1535" style={{marginTop:"15px", fontSize: '25px', marginLeft:"155px"}}>Packet Count : {PACKETCOUNT}</Tag> <br/>
                 <br/><br/>
                 <Divider style={{"color":"white",fontSize:"25px"}}>MQTT</Divider>
                 <Button type="primary" shape="round" icon={<PoweroffOutlined />} size='large' style={{ background: "Green", borderColor: "yellow", marginLeft:"140px"}}>
@@ -159,18 +159,18 @@ const MainGrid = props =>{
         <Row style={{"margin-bottom": "0px","background-color": "rgba(14,21,53,0.7)"}}>
         {/*GPS */}
         <Col xs={12} sm={12} md={12} lg={12} xl={12} >
-        <Tag color="#0E1535" style={{marginTop:"10px", fontSize: '25px'}}>GPS Time : 1500 s</Tag> <br/>
-                <Tag color="#0E1535" style={{marginTop:"10px", fontSize: '25px'}}>GPS Latitude : 19.512437</Tag> <br/>
-                <Tag color="#0E1535" style={{marginTop:"10px", fontSize: '25px'}}>GPS Longitude : -99.126397</Tag> <br/>
-                <Tag color="#0E1535" style={{marginTop:"10px", fontSize: '20px'}}>GPS Altitude : 700 m</Tag> <br/>
-                <Tag color="#0E1535" style={{marginTop:"10px", fontSize: '20px'}}>GPS Sat : 3
+        <Tag color="#0E1535" style={{marginTop:"10px", fontSize: '25px'}}>GPS Time : {GPSTIME}</Tag> <br/>
+                <Tag color="#0E1535" style={{marginTop:"10px", fontSize: '25px'}}>GPS Latitude : {GPSLATITUDE}</Tag> <br/>
+                <Tag color="#0E1535" style={{marginTop:"10px", fontSize: '25px'}}>GPS Longitude : {GPSLONGITUDE}</Tag> <br/>
+                <Tag color="#0E1535" style={{marginTop:"10px", fontSize: '20px'}}>GPS Altitude : {GPSALTITUDE}</Tag> <br/>
+                <Tag color="#0E1535" style={{marginTop:"10px", fontSize: '20px'}}>GPS Sat : {GPSSATS}
                 </Tag> <br/>
         </Col>
 
         {/*Elevation and azimut */}
         <Col xs={12} sm={12} md={12} lg={12} xl={12} >
-        <Tag color="#0E1535" style={{marginTop:"15px", fontSize: '25px'}}>Elevation : 9.81 °</Tag> <br/>
-        <Tag color="#0E1535" style={{marginTop:"15px", fontSize: '25px'}}>Azimut : 69.20 °</Tag> <br/>
+        <Tag color="#0E1535" style={{marginTop:"15px", fontSize: '25px'}}>Packet type : {PACKETTYPE}</Tag> <br/>
+        <Tag color="#0E1535" style={{marginTop:"15px", fontSize: '25px'}}>CMDECHO : {CMDECHO}</Tag> <br/>
         <Tag color="#0E1535" style={{marginTop:"15px", fontSize: '25px'}}>GS to CanSat:  1000 m</Tag> <br/>
             </Col>
         </Row>
