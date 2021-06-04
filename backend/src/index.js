@@ -114,7 +114,7 @@ io.on('connection', client =>{
 
         client.emit('payloadContainer',{
             name: tick++,
-            value: {"teamname" : "Team Thor", "temperatura": 35}
+            value: {"teamname" : "Team Thor", "temperatura": 35, "voltaje": 10}
         });
 
         
