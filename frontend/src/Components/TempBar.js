@@ -8,18 +8,11 @@ import {useEffect, useState } from 'react';
 
 const {  Content, Footer } = Layout;
 
-const socket = io('http://localhost:4000',{
-    transports: ['websocket', 'polling']
-});
-
 
 
 const TempBar = props =>{
 
     console.log("Esto esta en bar " + props.tempVal);
-
-
-    
 
     const data = {
       labels: ['Temperature'],
@@ -54,7 +47,14 @@ const TempBar = props =>{
 
     return(
         <div style={{backgroundColor:"#FFF"}}>
-            <HorizontalBar data={data} options={options} width={props.uswidth} height={props.usheight}/>
+            <HorizontalBar data={data} options={options} width={props.uswidth} height={props.usheight} options={{ scales:{xAxes: [
+        {
+          ticks: {
+            beginAtZero: true,
+            max: 40
+          },
+        },
+      ] },}}/>
         </div>
         
 

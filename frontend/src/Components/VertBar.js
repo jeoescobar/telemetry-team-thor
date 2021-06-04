@@ -15,7 +15,7 @@ const VertBar = props =>{
         datasets: [
           {
             label: 'Voltage',
-            data: [12],
+            data: [props.volVal],
             backgroundColor: [
               props.uscolor
             ],
@@ -40,7 +40,14 @@ const VertBar = props =>{
       }
     return(
         <div style={{backgroundColor:"#FFF"}}>
-            <Bar data={data} options={options} width={props.uswidth} height={props.usheight} />
+            <Bar data={data} options={options} width={props.uswidth} height={props.usheight} options={{ scales:{yAxes: [
+        {
+          ticks: {
+            beginAtZero: true,
+            max: 10
+          },
+        },
+      ] },}}/>
         </div>
         
 

@@ -51,7 +51,7 @@ var TEAMID = variables.TEAMID,
     SP2RELEASED="",
     ALTITUDE="",
     
-    VOLTAGE="",
+    
     GPSTIME="",
     GPSLATITUDE="",
     GPSLONGITUDE="",
@@ -66,6 +66,7 @@ const MainGrid = props =>{
     const [variables,setData] = useState({});
     const [TEAMID, setTEAMID] = useState("Team 1");
     const [TEMP, setTEMP] = useState(20);
+    const [VOLTAGE, setVOLTAGE] = useState(5);
     
 
     useEffect(()=>{
@@ -76,6 +77,7 @@ const MainGrid = props =>{
             //setTEAMID(TEAMID =>[...TEAMID,..."newPayload"]);
             setTEAMID(newPayload.value.teamname);
             setTEMP(newPayload.value.temperatura);
+            setVOLTAGE(newPayload.value.voltaje);
             //console.log(newPayload.value.teamname);
         });
     })
@@ -163,12 +165,12 @@ const MainGrid = props =>{
         <Row>
         {/*Voltage bar*/ }    
         <Col xs={11} sm={11} md={11} lg={11} xl={11} style={{marginRight:"10px"}}>
-            <VertBar usheight = {35} uswidth={50} uscolor={'rgb(255, 195, 0)'}/>
+            <VertBar usheight = {35} uswidth={50} uscolor={'rgb(255, 195, 0)'} volVal = {VOLTAGE}/>
             <Tag color="#0E1535" style={{marginTop:"15px", fontSize: '20px'}}>Voltage: {VOLTAGE}</Tag> <br/>
         </Col>
         {/*Temperature bar*/ }  
         <Col xs={12} sm={12} md={12} lg={12} xl={12}>
-            <TempBar usheight = {32} uswidth={50} uscolor={'rgb(144, 12, 63)'}  tempVal = {TEMP} />
+            <TempBar usheight = {32} uswidth={50} uscolor={'rgb(144, 12, 63)'}  tempVal = {TEMP}/>
             <Tag color="#0E1535" style={{marginTop:"15px", fontSize: '20px'}}>Temperature:  {TEMP} </Tag> <br/>
         </Col>
         </Row>
