@@ -41,6 +41,7 @@ serialport.list(function (err, ports) {
 });
 */
 
+
 const port = new serialport(
     'COM5',
     {baudRate: 115200}
@@ -110,7 +111,15 @@ io.on('connection', client =>{
                 name: tick++,
                 value: cpuPercent});
         });
-        //console.log("Works");
+
+        client.emit('payloadContainer',{
+            name: tick++,
+            value: {"teamname" : "Team Thor", "temperatura": 35}
+        });
+
+        
+
+        console.log("Works");
     },1000);
     
 });  

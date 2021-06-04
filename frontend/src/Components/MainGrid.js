@@ -8,10 +8,19 @@ import TempBar from './TempBar'
 import VertBar from './VertBar'
 import { Bar } from 'react-chartjs-2';
 import TrackingMap from './TrackingMap'
+import io from 'socket.io-client';
+import {useEffect, useState } from 'react';
+
 const {  Content, Footer } = Layout;
+const socket = io('http://localhost:4000',{
+    transports: ['websocket', 'polling']
+});
 
-let variables = myFunction();
 
+//let variables = myFunction();
+
+
+/*
 var TEAMID = variables.TEAMID,
     MISSIONTIME=variables.MISSIONTIME,
     PACKETCOUNT=variables.PACKETCOUNT,
@@ -31,9 +40,48 @@ var TEAMID = variables.TEAMID,
     SP1PACKETCOUNT=variables.SP1PACKETCOUNT,
     SP2PACKETCOUNT=variables.SP2PACKETCOUNT,
     CMDECHO=variables.CMDECHO;
+*/
 
-
+ //TEAMID = variables.TEAMID,
+ var    MISSIONTIME="",
+    PACKETCOUNT="",
+    PACKETTYPE="",
+    MODE="",
+    SP1RELEASED="",
+    SP2RELEASED="",
+    ALTITUDE="",
+    
+    VOLTAGE="",
+    GPSTIME="",
+    GPSLATITUDE="",
+    GPSLONGITUDE="",
+    GPSALTITUDE="",
+    GPSSATS="",
+    SOFTWARESTATE="",
+    SP1PACKETCOUNT="",
+    SP2PACKETCOUNT="",
+    CMDECHO="";
+    
 const MainGrid = props =>{
+    const [variables,setData] = useState({});
+    const [TEAMID, setTEAMID] = useState("Team 1");
+    const [TEMP, setTEMP] = useState(20);
+    
+
+    useEffect(()=>{
+        socket.on('payloadContainer', (newPayload) =>{
+            //setData((currentData) =>{[...data,cpuPercent]});
+            //setData(currentData =>[currentData,newPayload]);
+            
+            //setTEAMID(TEAMID =>[...TEAMID,..."newPayload"]);
+            setTEAMID(newPayload.value.teamname);
+            setTEMP(newPayload.value.temperatura);
+            //console.log(newPayload.value.teamname);
+        });
+    })
+
+
+
     return(
         <Row style={{"padding-top":"40px","padding-bottom":"40px"}}>
         <Col xs={4} sm={4} md={4} lg={4} xl={4} >
@@ -120,7 +168,7 @@ const MainGrid = props =>{
         </Col>
         {/*Temperature bar*/ }  
         <Col xs={12} sm={12} md={12} lg={12} xl={12}>
-            <TempBar usheight = {32} uswidth={50} uscolor={'rgb(144, 12, 63)'}  />
+            <TempBar usheight = {32} uswidth={50} uscolor={'rgb(144, 12, 63)'}  tempVal = {TEMP} />
             <Tag color="#0E1535" style={{marginTop:"15px", fontSize: '20px'}}>Temperature:  {TEMP} </Tag> <br/>
         </Col>
         </Row>

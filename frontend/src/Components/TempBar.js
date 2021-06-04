@@ -15,74 +15,28 @@ const socket = io('http://localhost:4000',{
 
 
 const TempBar = props =>{
+
+    console.log("Esto esta en bar " + props.tempVal);
+
+
     
-  const [temperatura,setTemperatura] = useState({
-    labels: ['Temperature'],
-    datasets: [
-      {
-        label: 'Temperature',
-        data: 0,
-        backgroundColor: [
-          props.uscolor
-        ],
-        borderColor: [
-          props.uscolor
-        ],
-        borderWidth: 1,
-      },
-    ],
-  }
-  );  
 
-  useEffect(()=>{
-    socket.on('temper', (tempernew) =>{
-      //setData((currentData) =>{[...data,cpuPercent]});
-      
-      const nuevoTemperatura = {
-        labels: ['Temperature'],
-        datasets: [
-          {
-            label: 'Temperature',
-            data: tempernew.value,
-            backgroundColor: [
-              props.uscolor
-            ],
-            borderColor: [
-              props.uscolor
-            ],
-            borderWidth: 1,
-          },
-        ],
-      }
-
-
-
-
-
-      setTemperatura(currentTemp =>[currentTemp,nuevoTemperatura]);
-      
-  });
-  },[]);
-
-
-  console.log(temperatura);
-
-  const data = {
-    labels: ['Temperature'],
-    datasets: [
-      {
-        label: 'Temperature',
-        data: 0,
-        backgroundColor: [
-          props.uscolor
-        ],
-        borderColor: [
-          props.uscolor
-        ],
-        borderWidth: 1,
-      },
-    ],
-  }
+    const data = {
+      labels: ['Temperature'],
+      datasets: [
+        {
+          label: 'Temperature',
+          data: [props.tempVal],
+          backgroundColor: [
+            props.uscolor
+          ],
+          borderColor: [
+            props.uscolor
+          ],
+          borderWidth: 1,
+        },
+      ],
+    }
   
   const options = {
     scales: {
