@@ -76,3 +76,5 @@ function myFunction(str) {
       console.log(CMDECHO);
        */
   }
+
+  module.exports = myFunction;

@@ -1,15 +1,14 @@
 const express = require('express');
 const engine = require('ejs-mate');
 const path = require('path');
-const serialport = require('serialport');
+//const serialport = require('serialport');
 const http = require('http');
 const socketIo = require('socket.io')
 const osutils = require('os-utils');
 const splitFunction = require('./split');
-
-
+//Serial
+var serialport = require("serialport");
 var SerialPort = serialport.SerialPort;
-
 /*
 require('events').EventEmitter.prototype._maxListeners = 70;
 require('events').defaultMaxListeners = 70;
@@ -37,26 +36,13 @@ app.set('view engine','ejs');
 
 /*
 serialport.list(function (err, ports) {
+
     ports.forEach(function(port) {
     console.log(port.comName);
     });
 });
 */
 
-
-
-
-
-/*
-parser.on('data', (line) =>{
-    console.log('Data : ' + line);
-    console.log("Primer caracter"+ line.substring(30,38))
-})
-*/
-console.log('ENtra')
-
-let tick = 0;
-let tick2 = 0;
 
 var sp = new  serialport(
     'COM5',
@@ -68,50 +54,36 @@ var sp = new  serialport(
     flowControl: false,
     });
 
+/*
+parser.on('data', (line) =>{
+    console.log('Data : ' + line);
+    console.log("Primer caracter"+ line.substring(30,38))
 
-    var datosString;
-    var objTelemetry;
+})
+*/
+console.log('ENtra')
 
+let tick = 0;
+let tick2 = 0;
+
+var datos;
+var datosString;
+
+sp.on('open', function() {
+console.log('open');
+sp.on('data', function(data) {
+    datos = data;
     
-    //sp.on('open', function() {
-        
-     //   });
+    console.log('' + data);
+    datosString = datos.toString('utf8');
+    console.log(datosString);
+    var objTelemetry = splitFunction(datosString);
+    console.log(objTelemetry);
+});
+});
+
+io.on('connection', client =>{
     
-        io.on('connection', client =>{
-
-
-            console.log('open');
-        sp.on('data', function(data) {
-            datos = data;
-            
-            console.log('' + data);
-            datosString = datos.toString('utf8');
-            console.log(datosString);
-            objTelemetry = splitFunction(datosString);
-            console.log(objTelemetry);
-            
-               if(typeof objTelemetry.CMDECHO !== "undefined"){ 
-            client.emit('payloadContainer',{
-                name: tick++,
-                value: objTelemetry});''
-            }
-            
-        });
-
-
-
-            
-
-        }); 
-
-
-
-    
-    
-
-
-
-
     /*
     parser.on('data', (line) =>{
         console.log('Data : ' + line);
@@ -119,16 +91,22 @@ var sp = new  serialport(
         
         if(line.split(",").length == 19)
         {
+
         var objTelemetry = splitFunction.myFunction(line);
         
         
         console.log("Esta es la telemetria " + objTelemetry);
+
+
+
         client.emit('cpu',{
             name: tick++,
             value: line.substring(0,7)});
+
         client.emit('temper',{
             name: tick2++,
             value: line.substring(24,28)});
+
         client.emit('segundo',{
             name: tick2++,
             value: line.substring(9,15)});
@@ -141,10 +119,55 @@ var sp = new  serialport(
             name: tick2++,
             value: line.substring(30,38)});
         }
+
     });
     */
+    
+        
+        sp.on('open', function() {
+        console.log('open');
+        sp.on('data', function(data) {
+            datos = data;
+            
+            console.log('' + data);
+            datosString = datos.toString('utf8');
+            console.log(datosString);
 
-    /*
+            //if(datosString.split(",") == 19){
+            var objTelemetry = splitFunction(datosString);
+            
+            console.log(objTelemetry);
+            
+            client.emit('payloadContainer',{
+            name: tick++,
+            value: objTelemetry});
+            //}
+            //else if(datosString.split(",") == 7){
+                /*
+                var objTelemetry = splitFunction(datosString);
+            
+                console.log(objTelemetry);
+                
+                client.emit('payloadContainer',{
+                name: tick++,
+                value: objTelemetry});
+                */
+            //}
+
+
+        });
+        });
+
+
+
+
+
+    
+
+
+
+    /*    
+    
     setInterval(()=>{
         //Evento
         osutils.cpuUsage((cpuPercent) =>{
@@ -161,9 +184,11 @@ var sp = new  serialport(
         
 
         console.log("Works");
-    },1000);*/
-    
- 
+    },1000);
+    */
+
+
+});  
 
 
 

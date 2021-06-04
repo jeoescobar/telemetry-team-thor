@@ -49,7 +49,7 @@ var TEAMID = variables.TEAMID,
     MODE="",
     SP1RELEASED="",
     SP2RELEASED="",
-    ALTITUDE="",
+    
     
     
     GPSTIME="",
@@ -67,18 +67,26 @@ const MainGrid = props =>{
     const [TEAMID, setTEAMID] = useState("Team 1");
     const [TEMP, setTEMP] = useState(20);
     const [VOLTAGE, setVOLTAGE] = useState(5);
+    const [ALTITUDE, setALTITUDE] = useState([]);
+    const [Altcurr, setAltcurr] = useState(0);
     
 
     useEffect(()=>{
         socket.on('payloadContainer', (newPayload) =>{
             //setData((currentData) =>{[...data,cpuPercent]});
             //setData(currentData =>[currentData,newPayload]);
-            
+            console.log("ESToooo \n");
+            console.log(newPayload);
+
             //setTEAMID(TEAMID =>[...TEAMID,..."newPayload"]);
             setTEAMID(newPayload.value.teamname);
-            setTEMP(newPayload.value.temperatura);
-            setVOLTAGE(newPayload.value.voltaje);
+            setTEMP(newPayload.value.TEMP);
+            setVOLTAGE(newPayload.value.VOLTAGE);
+            //setALTITUDE(newPayload.value.ALTITUDE);
+            setALTITUDE(currentAltitude =>[...currentAltitude,newPayload.value.ALTITUDE]);
+            setAltcurr(newPayload.value.ALTITUDE);
             //console.log(newPayload.value.teamname);
+            
         });
     })
 
@@ -157,7 +165,7 @@ const MainGrid = props =>{
         {/*Altitude vs time */ }
         <Col xs={11} sm={11} md={11} lg={11} xl={11} style={{marginLeft:"10px",marginRight:"10px",marginBottom:"10px", marginTop:"10px"}}>
         <Rotation uscolor={'rgb(144, 12, 63)'} usheight = {250} uswidth={700} uslabel={"Altitude vs Time"}/>
-        <Tag color="#0E1535" style={{marginTop:"10px", fontSize: '20px'}}>Altitude:  {ALTITUDE}</Tag> <br/>
+        <Tag color="#0E1535" style={{marginTop:"10px", fontSize: '20px'}}>Altitude:  {Altcurr}</Tag> <br/>
         </Col>
 
 
@@ -212,7 +220,7 @@ const MainGrid = props =>{
         <Tag color="#0E1535" style={{marginTop:"10px", fontSize: '25px'}}>GPS Time : {GPSTIME}</Tag> <br/>
                 <Tag color="#0E1535" style={{marginTop:"10px", fontSize: '25px'}}>GPS Latitude : {GPSLATITUDE}</Tag> <br/>
                 <Tag color="#0E1535" style={{marginTop:"10px", fontSize: '25px'}}>GPS Longitude : {GPSLONGITUDE}</Tag> <br/>
-                <Tag color="#0E1535" style={{marginTop:"10px", fontSize: '20px'}}>GPS Altitude : {GPSALTITUDE}</Tag> <br/>
+                <Tag color="#0E1535" style={{marginTop:"10px", fontSize: '20px'}}>GPS Altitude : {GPSALTITUDE[GPSALTITUDE.length - 1]}</Tag> <br/>
                 <Tag color="#0E1535" style={{marginTop:"10px", fontSize: '20px'}}>GPS Sat : {GPSSATS}
                 </Tag> <br/>
         </Col>

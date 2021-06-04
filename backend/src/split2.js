@@ -1,6 +1,6 @@
-function myFunction2() {
+function myFunction2(str) {
 
-    var str = "TEAM_ID,MISSION_TIME,PACKET_COUNT,PACKET_TYPE,SP_ALTITUDE,SP_TEMP,SP_ROTATION_RATE";
+    //var str = "TEAM_ID,MISSION_TIME,PACKET_COUNT,PACKET_TYPE,SP_ALTITUDE,SP_TEMP,SP_ROTATION_RATE";
     
     var res = str.split(",");
     
@@ -30,5 +30,5 @@ function myFunction2() {
       }
   }
 
-  export {myFunction2};
+  module.exports = myFunction2;
 
