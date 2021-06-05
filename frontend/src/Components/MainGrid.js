@@ -52,39 +52,67 @@ var TEAMID = variables.TEAMID,
     CMDECHO=variables.CMDECHO;
 */
 
- //TEAMID = variables.TEAMID,
- var    MISSIONTIME="",
-    PACKETCOUNT="",
-    PACKETTYPE="",
-    MODE="",
-    SP1RELEASED="",
-    SP2RELEASED="",
-    
-    
-    
-    GPSTIME="",
-    GPSLATITUDE="",
-    GPSLONGITUDE="",
-    GPSALTITUDE="",
-    GPSSATS="",
-    SOFTWARESTATE="",
-    SP1PACKETCOUNT="",
-    SP2PACKETCOUNT="",
-    CMDECHO="";
-    
 const MainGrid = props =>{
+    //Container telemetry
     const [variables,setData] = useState({});
+
+    const [SP1PACKETCOUNT, setSP1PACKETCOUNT] = useState(30);
+    const [SP2PACKETCOUNT, setSP2PACKETCOUNT] = useState(30);
     const [TEAMID, setTEAMID] = useState("Team 1");
+    const [MISSIONTIME, setMISSIONTIME] = useState();
+    const [PACKETCOUNT, setPACKETCOUNT] = useState();
+    const [PACKETTYPE, setPACKETTYPE] = useState();
+    const [MODE, setMODE] = useState();
+    const [SP1RELEASED, setSP1RELEASED] = useState(30);
+    const [SP2RELEASED, setSP2RELEASED] = useState(30);
     const [TEMP, setTEMP] = useState(20);
     const [VOLTAGE, setVOLTAGE] = useState(5);
-    const [ALTITUDE, setALTITUDE] = useState([]);
+
+    const [GPSTIME, setGPSTIME] = useState(5);
+    const [GPSLATITUDE, setGPSLATITUDE] = useState(5);
+    const [GPSLONGITUDE, setGPSLONGITUDE] = useState(5);
+    const [GPSALTITUDE, setGPSALTITUDE] = useState(5);
+    const [GPSSATS, setGPSSATS] = useState(5);
+    const [SOFTWARESTATE, setSOFTWARESTATE] = useState(5);
+    const [CMDECHO, setCMDECHO] = useState(5);
+
+    //const [ALTITUDE, setALTITUDE] = useState([]);
     const [Altcurr, setAltcurr] = useState(0);
     
     const [ALTITUDE1, setALTITUDE1] = useState(0);
     const [ALTITUDE2, setALTITUDE2] = useState(0);
     const [ALTITUDE3, setALTITUDE3] = useState(0);
     const [ALTITUDE4, setALTITUDE4] = useState(0);
+    const [ALTITUDE5, setALTITUDE5] = useState(0);
+    const [ALTITUDE6, setALTITUDE6] = useState(0);
     
+    //Container payload SP1
+    const [SP1MISSIONTIME, setSP1MISSIONTIME] = useState(30);
+    const [SP1PACKETTYPE, setSP1PACKETTYPE] = useState(30);
+    const [SP1TEMP, setSP1TEMP] = useState(30);
+    const [SP1ALTITUDE, setSP1ALTITUDE] = useState(125);
+    const [SP1ROTATIONRATEcurr, setSP1ROTATIONRATEcurr] = useState(0);
+
+    const [SP1ROTATIONRATE1, setSP1ROTATIONRATE1] = useState(0);
+    const [SP1ROTATIONRATE2, setSP1ROTATIONRATE2] = useState(0);
+    const [SP1ROTATIONRATE3, setSP1ROTATIONRATE3] = useState(0);
+    const [SP1ROTATIONRATE4, setSP1ROTATIONRATE4] = useState(0);
+    const [SP1ROTATIONRATE5, setSP1ROTATIONRATE5] = useState(0);
+    const [SP1ROTATIONRATE6, setSP1ROTATIONRATE6] = useState(0);
+
+    //Container payload SP2
+    const [SP2MISSIONTIME, setSP2MISSIONTIME] = useState(30);
+    const [SP2PACKETTYPE, setSP2PACKETTYPE] = useState(30);
+    const [SP2TEMP, setSP2TEMP] = useState(30);
+    const [SP2ALTITUDE, setSP2ALTITUDE] = useState(125);
+    const [SP2ROTATIONRATEcurr, setSP2ROTATIONRATEcurr] = useState(0);
+    
+    const [SP2ROTATIONRATE1, setSP2ROTATIONRATE1] = useState(0);
+    const [SP2ROTATIONRATE2, setSP2ROTATIONRATE2] = useState(0);
+    const [SP2ROTATIONRATE3, setSP2ROTATIONRATE3] = useState(0);
+    const [SP2ROTATIONRATE4, setSP2ROTATIONRATE4] = useState(0);
+    const [SP2ROTATIONRATE5, setSP2ROTATIONRATE5] = useState(0);
+    const [SP2ROTATIONRATE6, setSP2ROTATIONRATE6] = useState(0);
 
     useEffect(()=>{
         socket.on('payloadContainer', (newPayload) =>{
@@ -99,7 +127,6 @@ const MainGrid = props =>{
             setVOLTAGE(newPayload.value.VOLTAGE);
             //setALTITUDE(newPayload.value.ALTITUDE);
             //setALTITUDE(currentAltitude =>[...currentAltitude,newPayload.value.ALTITUDE]);
-            
             
             //setALTITUDE(...ALTITUDE,newPayload.value.ALTITUDE);
             setALTITUDE3(Altcurr);
@@ -189,9 +216,6 @@ const MainGrid = props =>{
         <Col xs={11} sm={11} md={11} lg={11} xl={11} style={{marginLeft:"10px",marginRight:"10px",marginBottom:"10px", marginTop:"10px"}}>
         
         <Rotation uscolor={'rgb(144, 12, 63)'} usheight = {250} uswidth={700} uslabel={"Altitude vs Time"} AltVal = {[ALTITUDE1,ALTITUDE2,ALTITUDE3,Altcurr]} />
-        
-
-
 
         <Tag color="#0E1535" style={{marginTop:"10px", fontSize: '20px'}}>Altitude:  {Altcurr}</Tag> <br/>
         </Col>
@@ -271,20 +295,21 @@ const MainGrid = props =>{
             <Row style={{"padding-bottom": "0px","background-color": "rgba(14,21,53,0.7)"}}>
             
             <Divider style={{"color":"white","fontSize":"25px"}}>SP 1 Telemetry</Divider>
-            <Tag color="#0E1535" style={{marginTop:"0px", fontSize: '20px'}}>Altitude : 600 m</Tag> <br/>
-            <Tag color="#0E1535" style={{marginTop:"0px", fontSize: '20px'}}>Rotation Rate : 60 rpm</Tag> 
+            <Tag color="#0E1535" style={{marginTop:"0px", fontSize: '20px'}}>Altitude : {SP1ALTITUDE}</Tag> <br/>
+            <Tag color="#0E1535" style={{marginTop:"0px", fontSize: '20px'}}>Rotation Rate : {SP1ROTATIONRATEcurr} rpm</Tag> 
             <br/><br/>
             <Col xs={24} sm={24} md={24} lg={24} xl={24} >
                 <Row>
                 <Col xs={24} sm={24} md={24} lg={24} xl={24} >
-                <Rotation uscolor={'rgb(0, 166, 30)'} usheight = {200} uswidth={700} uslabel={"Rotation Rate"}/>
+                <Rotation uscolor={'rgb(0, 166, 30)'} usheight = {200} uswidth={700} uslabel={"Rotation Rate"} Rot1Val = {[SP1ROTATIONRATE1,SP1ROTATIONRATE2,SP1ROTATIONRATE3,SP1ROTATIONRATEcurr]}/>
+
                 </Col>
                 
                 </Row>
                 <Row>
                 <Col xs={24} sm={24} md={24} lg={24} xl={24} >
                 <TempBar uscolor={'rgb(0, 166, 30)'} usheight = {100} uswidth={700}></TempBar>
-                <Tag color="#0E1535" style={{marginTop:"5px", fontSize: '20px'}}>Temperature : 350 k</Tag> <br/>
+                <Tag color="#0E1535" style={{marginTop:"5px", fontSize: '20px'}}>Temperature : {SP1TEMP}</Tag> <br/>
                 </Col>
                 </Row>
                 
@@ -300,19 +325,19 @@ const MainGrid = props =>{
             <Row style={{"background-color": "rgba(14,21,53,0.7)"}}>
             
             <Divider style={{"color":"white","fontSize":"25px"}}>SP 2 Telemetry</Divider>
-            <Tag color="#0E1535" style={{marginTop:"0px", fontSize: '20px'}}>Altitude : 600 m</Tag> <br/>
-            <Tag color="#0E1535" style={{marginTop:"0px", fontSize: '20px'}}>Rotation Rate : 60 rpm</Tag> 
+            <Tag color="#0E1535" style={{marginTop:"0px", fontSize: '20px'}}>Altitude : {SP2ALTITUDE}</Tag> <br/>
+            <Tag color="#0E1535" style={{marginTop:"0px", fontSize: '20px'}}>Rotation Rate : {SP2ROTATIONRATEcurr} rpm</Tag> 
             <br/><br/>
             <Col xs={24} sm={24} md={24} lg={24} xl={24} >
                 <Row>
                 <Col xs={24} sm={24} md={24} lg={24} xl={24} >
-                <Rotation uscolor={'rgba(199, 0, 57)'} usheight = {200} uswidth={700} uslabel={"Rotation Rate"}/>
+                <Rotation uscolor={'rgba(199, 0, 57)'} usheight = {200} uswidth={700} uslabel={"Rotation Rate"} Rot2Val = {[SP2ROTATIONRATE1,SP2ROTATIONRATE2,SP2ROTATIONRATE3,SP2ROTATIONRATEcurr]}/>
                 </Col>
                 </Row>
                 <Row>
                 <Col xs={24} sm={24} md={24} lg={24} xl={24} >
                 <TempBar uscolor={'rgba(199, 0, 57)'} usheight = {100} uswidth={700}></TempBar>
-                <Tag color="#0E1535" style={{marginTop:"10px", fontSize: '20px'}}>Temperature : 350 k</Tag> <br/>
+                <Tag color="#0E1535" style={{marginTop:"10px", fontSize: '20px'}}>Temperature : {SP2TEMP}</Tag> <br/>
                 </Col>
                 </Row>
                 
