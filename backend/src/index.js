@@ -79,6 +79,17 @@ objTelemetry.push({
 
 simulacion = "2098,";
 
+simulacion = [];
+
+var TEAMID,MISSIONTIME,PACKETCOUNT,PACKETTYPE,MODE,SP1RELEASED,SP2RELEASED,ALTITUDE,TEMP,VOLTAGE,GPSTIME,GPSLATITUDE,GPSLONGITUDE,GPSALTITUDE,GPSSATS,SOFTWARESTATE,SP1PACKETCOUNT,SP2PACKETCOUNT,CMDECHO;
+
+cad1 = "4784,14:15:20,1,C,CDM,1,1,123,20,4,123,423,234,2,,3,FFF,5,4,CMDECHO";
+cad2 = "4784,14:15:20,1,S1,CDM,1,1,123,20,4,123,423,234,2,,3,FFF,5,4,CMDECHO";
+cad3 = "4784,14:15:20,1,S2,CDM,1,1,123,20,4,123,423,234,2,,3,FFF,5,4,CMDECHO";
+simulacion.push(cad1);
+simulacion.push(cad2);
+simulacion.push(cad3);
+
 
 auxcont = 0;
 
@@ -125,7 +136,7 @@ var sp = new  serialport(
         }); */
 
 
-
+/*
         setInterval(()=>{
             //Evento
             
@@ -139,17 +150,32 @@ var sp = new  serialport(
     
             console.log("Works " + auxcont);
         },5000);
-        
-
-
-            
-
+  
         }); 
+*/
 
 
-
+setInterval(()=>{
+    datosString = simulacion[auxcont];
+            
+    //console.log('' + data);
+    //datosString = datos.toString('utf8');
+    console.log(datosString);
+    objTelemetry = splitFunction(datosString);
+    console.log(objTelemetry);
     
-    
+       if(typeof objTelemetry.CMDECHO !== "undefined"){ 
+    client.emit('payloadContainer',{
+        name: tick++,
+        value: objTelemetry});
+    }
+
+
+    auxcont++;
+            if(auxcont > 2){auxcont=0;}
+        },5000);
+  
+    }); 
 
 
 
