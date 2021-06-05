@@ -6,6 +6,16 @@ const http = require('http');
 const socketIo = require('socket.io')
 const osutils = require('os-utils');
 const splitFunction = require('./split');
+const splitSPS = require('./split2');
+
+
+var fs = require('fs');
+var json2csv = require('json2csv').parse;
+//var csv = require('fast-csv');
+//var ws = fs.createWriteStream('my.csv',{flag: 'a'});
+
+var newLine = '\r\n';
+var i = 1;
 
 
 var SerialPort = serialport.SerialPort;
@@ -84,8 +94,12 @@ simulacion = [];
 var TEAMID,MISSIONTIME,PACKETCOUNT,PACKETTYPE,MODE,SP1RELEASED,SP2RELEASED,ALTITUDE,TEMP,VOLTAGE,GPSTIME,GPSLATITUDE,GPSLONGITUDE,GPSALTITUDE,GPSSATS,SOFTWARESTATE,SP1PACKETCOUNT,SP2PACKETCOUNT,CMDECHO;
 
 cad1 = "4784,14:15:20,1,C,CDM,1,1,123,20,4,123,423,234,2,,3,FFF,5,4,CMDECHO";
-cad2 = "4784,14:15:20,1,S1,CDM,1,1,123,20,4,123,423,234,2,,3,FFF,5,4,CMDECHO";
-cad3 = "4784,14:15:20,1,S2,CDM,1,1,123,20,4,123,423,234,2,,3,FFF,5,4,CMDECHO";
+cad2 = "4784,14:15:20,1,S1,123,20,4";
+cad3 = "4784,14:15:20,1,S2,123,20,4";
+//var str = "TEAM_ID,MISSION_TIME,PACKET_COUNT,PACKET_TYPE,SP_ALTITUDE,SP_TEMP,SP_ROTATION_RATE";
+cad4 = 
+
+
 simulacion.push(cad1);
 simulacion.push(cad2);
 simulacion.push(cad3);
@@ -161,14 +175,159 @@ setInterval(()=>{
     //console.log('' + data);
     //datosString = datos.toString('utf8');
     console.log(datosString);
-    objTelemetry = splitFunction(datosString);
-    console.log(objTelemetry);
+    checkVal = datosString.split(",");
+    if(checkVal[3] == 'C'){
+
+        objTelemetry = splitFunction(datosString);
+        console.log(objTelemetry);
+        console.log(objTelemetry.TEAMID);
     
        if(typeof objTelemetry.CMDECHO !== "undefined"){ 
-    client.emit('payloadContainer',{
+        client.emit('payloadContainer',{
         name: tick++,
         value: objTelemetry});
+        }
+
+        /****** CSV */
+        
+        var fields = ['TEAM_ID','MISSION_TIME','PACKETCOUNT','PACKETTYPE','MODE','SP1RELEASED','SP2RELEASED','ALTITUDE','TEMP','VOLTAGE','GPSTIME','GPSLATITUDE','GPSLONGITUDE','GPSALTITUDE','GPSSATS','SOFTWARESTATE','SP1PACKETCOUNT','SP2PACKETCOUNT','CMDECHO'];
+	      
+	      var toCSV = [
+            objTelemetry.TEAMID,
+            objTelemetry.MISSIONTIME,
+            objTelemetry.PACKETCOUNT,
+            objTelemetry.PACKETTYPE,
+            objTelemetry.MODE,
+            objTelemetry.SP1RELEASED,
+            objTelemetry.SP2RELEASED,
+            objTelemetry.ALTITUDE,
+            objTelemetry.TEMP,
+            objTelemetry.VOLTAGE,
+            objTelemetry.GPSTIME,
+            objTelemetry.GPSLATITUDE,
+            objTelemetry.GPSLONGITUDE,
+            objTelemetry.GPSALTITUDE,
+            objTelemetry.GPSSATS,
+            objTelemetry.SOFTWARESTATE,
+            objTelemetry.SP1PACKETCOUNT,
+            objTelemetry.SP2PACKETCOUNT,
+            objTelemetry.CMDECHO
+
+	      	];
+
+	      fs.stat('Flight_2092_C.csv', function (err, stat) {
+			  if (err == null) {
+			    console.log('File exists, writing new data...');
+			   // fs.truncate('team2092.csv', 0, function(){console.log('clear done... ');})
+			    //write the actual data and end with newline
+			    var csv = toCSV + newLine;
+
+			    fs.appendFile('Flight_2092_C.csv', csv, function (err) {
+			      if (err) throw err;
+			      console.log('The "data to append" was appended to file!');
+			    });
+			  } else {
+			    //write the headers and newline
+			    console.log('New file, just writing headers');
+			    fields = fields + newLine;
+
+			    fs.writeFile('Flight_2092_C.csv', fields, function (err) {
+			      if (err) throw err;
+			      console.log('file saved');
+			    });
+			  }
+			});
+	      i++;
+            
+        /****** CSV */
     }
+    else if(checkVal[3] == 'S1'){
+        objTelemetry = splitSPS(datosString);
+        console.log(objTelemetry);
+        console.log(objTelemetry.TEAMID);
+
+
+        var fields = ['TEAM_ID','MISSION_TIME','PACKETCOUNT','PACKETTYPE','SP_ALTITUDE','SP_TEMP','SP_ROTATION_RATE'];
+	      var toCSV = [
+	      	objTelemetry.TEAMID,
+	      	objTelemetry.MISSIONTIME,
+	      	objTelemetry.PACKETCOUNT,
+	      	objTelemetry.PACKETTYPE,
+	      	objTelemetry.SPALTITUDE,
+	      	objTelemetry.SPTEMP,
+	      	objTelemetry.SPROTATIONRATE
+	      	];
+
+
+	      	      fs.stat('Flight_2092_S1.csv', function (err, stat) {
+			  if (err == null) {
+			    console.log('File exists, writing new data...');
+			   // fs.truncate('team2092.csv', 0, function(){console.log('clear done... ');})
+			    //write the actual data and end with newline
+			    var csv = toCSV + newLine;
+
+			    fs.appendFile('Flight_2092_S1.csv', csv, function (err) {
+			      if (err) throw err;
+			      console.log('The "data to append" was appended to file!');
+			    });
+			  } else {
+			    //write the headers and newline
+			    console.log('New file, just writing headers');
+			    fields = fields + newLine;
+
+			    fs.writeFile('Flight_2092_S1.csv', fields, function (err) {
+			      if (err) throw err;
+			      console.log('file saved');
+			    });
+			  }
+			});
+	      i++;
+    }
+    else if(checkVal[3] == 'S2'){
+        objTelemetry = splitSPS(datosString);
+        console.log(objTelemetry);
+        console.log(objTelemetry.TEAMID);
+
+
+        var fields = ['TEAM_ID','MISSION_TIME','PACKETCOUNT','PACKETTYPE','SP_ALTITUDE','SP_TEMP','SP_ROTATION_RATE'];
+	      var toCSV = [
+	      	objTelemetry.TEAMID,
+	      	objTelemetry.MISSIONTIME,
+	      	objTelemetry.PACKETCOUNT,
+	      	objTelemetry.PACKETTYPE,
+	      	objTelemetry.SPALTITUDE,
+	      	objTelemetry.SPTEMP,
+	      	objTelemetry.SPROTATIONRATE
+	      	];
+
+
+	      	      fs.stat('Flight_2092_S2.csv', function (err, stat) {
+			  if (err == null) {
+			    console.log('File exists, writing new data...');
+			   // fs.truncate('team2092.csv', 0, function(){console.log('clear done... ');})
+			    //write the actual data and end with newline
+			    var csv = toCSV + newLine;
+
+			    fs.appendFile('Flight_2092_S2.csv', csv, function (err) {
+			      if (err) throw err;
+			      console.log('The "data to append" was appended to file!');
+			    });
+			  } else {
+			    //write the headers and newline
+			    console.log('New file, just writing headers');
+			    fields = fields + newLine;
+
+			    fs.writeFile('Flight_2092_S2.csv', fields, function (err) {
+			      if (err) throw err;
+			      console.log('file saved');
+			    });
+			  }
+			});
+	      i++;
+
+    }
+
+
 
 
     auxcont++;
