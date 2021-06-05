@@ -138,6 +138,36 @@ const MainGrid = props =>{
             //console.log(newPayload.value.teamname);
             
         });
+
+        socket.on('payloadSP1', (newPayloadSP1) =>{
+            
+            setSP1ALTITUDE(newPayloadSP1.value.SPALTITUDE)
+            
+            setSP1TEMP(newPayloadSP1.value.SPTEMP)
+            
+             
+            setSP1ROTATIONRATE3(SP1ROTATIONRATEcurr)
+            setSP1ROTATIONRATE2(SP1ROTATIONRATE3)
+            setSP1ROTATIONRATE1(SP1ROTATIONRATE2)
+            setSP1ROTATIONRATEcurr(newPayloadSP1.value.SPROTATIONRATE)
+
+        });
+
+        socket.on('payloadSP2', (newPayloadSP2) =>{
+            //console.log(newPayloadSP2)
+            setSP2ALTITUDE(newPayloadSP2.value.SPALTITUDE)
+            
+            setSP2TEMP(newPayloadSP2.value.SPTEMP)
+            
+             
+            setSP2ROTATIONRATE3(SP2ROTATIONRATEcurr)
+            setSP2ROTATIONRATE2(SP2ROTATIONRATE3)
+            setSP2ROTATIONRATE1(SP2ROTATIONRATE2)
+            setSP2ROTATIONRATEcurr(newPayloadSP2.value.SPROTATIONRATE)
+
+        });
+
+
     })
     
 
