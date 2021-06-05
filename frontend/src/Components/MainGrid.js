@@ -308,19 +308,14 @@ const MainGrid = props =>{
                 </Row>
                 <Row>
                 <Col xs={24} sm={24} md={24} lg={24} xl={24} >
-                <TempBar uscolor={'rgb(0, 166, 30)'} usheight = {100} uswidth={700}></TempBar>
+                <TempBar uscolor={'rgb(0, 166, 30)'} usheight = {100} uswidth={700} sp1tempVal = {SP1TEMP}></TempBar>
                 <Tag color="#0E1535" style={{marginTop:"5px", fontSize: '20px'}}>Temperature : {SP1TEMP}</Tag> <br/>
                 </Col>
                 </Row>
                 
             </Col>
-                
-                
-                
-                
+   
             </Row>
-            
-
 
             <Row style={{"background-color": "rgba(14,21,53,0.7)"}}>
             
@@ -336,7 +331,7 @@ const MainGrid = props =>{
                 </Row>
                 <Row>
                 <Col xs={24} sm={24} md={24} lg={24} xl={24} >
-                <TempBar uscolor={'rgba(199, 0, 57)'} usheight = {100} uswidth={700}></TempBar>
+                <TempBar uscolor={'rgba(199, 0, 57)'} usheight = {100} uswidth={700} sp2tempVal = {SP2TEMP}></TempBar>
                 <Tag color="#0E1535" style={{marginTop:"10px", fontSize: '20px'}}>Temperature : {SP2TEMP}</Tag> <br/>
                 </Col>
                 </Row>
