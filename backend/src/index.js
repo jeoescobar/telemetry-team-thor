@@ -96,13 +96,25 @@ var TEAMID,MISSIONTIME,PACKETCOUNT,PACKETTYPE,MODE,SP1RELEASED,SP2RELEASED,ALTIT
 cad1 = "4784,14:15:20,1,C,CDM,1,1,123,20,4,123,423,234,2,,3,FFF,5,4,CMDECHO";
 cad2 = "4784,14:15:20,1,S1,123,20,4";
 cad3 = "4784,14:15:20,1,S2,123,20,4";
+cad4 = "4784,14:15:20,2,C,CDM,1,1,100,25,3,130,400,234,2,,3,FFF,5,4,CMDECHO";
+cad5 = "4784,14:15:20,2,S1,123,32,10";
+cad6 = "4784,14:15:20,1,S2,123,30,4";
+cad7 = "4784,14:15:20,3,C,CDM,1,1,80,18,5,120,300,234,2,,3,FFF,5,4,CMDECHO";
+cad8 = "4784,14:15:20,3,S1,123,18,9";
+cad9 = "4784,14:15:20,1,S2,111,23,1";
 //var str = "TEAM_ID,MISSION_TIME,PACKET_COUNT,PACKET_TYPE,SP_ALTITUDE,SP_TEMP,SP_ROTATION_RATE";
-cad4 = 
+
 
 
 simulacion.push(cad1);
 simulacion.push(cad2);
 simulacion.push(cad3);
+simulacion.push(cad4);
+simulacion.push(cad5);
+simulacion.push(cad6);
+simulacion.push(cad7);
+simulacion.push(cad8);
+simulacion.push(cad9);
 
 
 auxcont = 0;
