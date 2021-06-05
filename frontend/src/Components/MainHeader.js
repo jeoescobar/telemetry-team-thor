@@ -44,13 +44,13 @@ return(
       <h style={{"color":"#0E184B"}}> ......................................</h>
       <h style={{"color":"#0E184B"}}> ......................................</h>
        
-      <Menu.Item key="alipay" className="modified-item" style={{"text-align": "justify-all", background: 'none'}} disabled title="" >   
+      <Menu.Item key="alipay1" className="modified-item" style={{"text-align": "justify-all", background: 'none'}} disabled title="" >   
         <span style={{"font-size": "50px", "color": "#D3D3D3"}}>Team Thor</span><br></br>
         <span>CanSat Competition</span>
         <span style={{"paddingLeft":"30px"}}>UPIITA - IPN</span>
       </Menu.Item>
       
-      <Menu.Item key="alipay" style={{float: 'right', background: 'none'}} title="">
+      <Menu.Item key="alipay2" style={{float: 'right', background: 'none'}} title="">
       <Image
         width={90}
         height={90}

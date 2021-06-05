@@ -58,6 +58,30 @@ console.log('ENtra')
 let tick = 0;
 let tick2 = 0;
 
+objTelemetry = [] ;
+objTelemetry.push({
+    "TEMP" : 28,
+    "VOLTAGE": 8,
+    "ALTITUDE": 112.5
+})
+objTelemetry.push({
+    "TEMP" : 20,
+    "VOLTAGE": 5,
+    "ALTITUDE": 80
+})
+
+objTelemetry.push({
+    "TEMP" : 25,
+    "VOLTAGE": 10,
+    "ALTITUDE": 100
+})
+
+
+simulacion = "2098,";
+
+
+auxcont = 0;
+
 var sp = new  serialport(
     'COM5',
     {
@@ -81,6 +105,8 @@ var sp = new  serialport(
 
 
             console.log('open');
+
+        /* LEE el puerto serial 
         sp.on('data', function(data) {
             datos = data;
             
@@ -96,8 +122,24 @@ var sp = new  serialport(
                 value: objTelemetry});''
             }
             
-        });
+        }); */
 
+
+
+        setInterval(()=>{
+            //Evento
+            
+    
+            client.emit('payloadContainer',{
+                name: tick++,
+                value: objTelemetry[auxcont]
+            });
+            auxcont++;
+            if(auxcont > 2){auxcont=0;}
+    
+            console.log("Works " + auxcont);
+        },5000);
+        
 
 
             

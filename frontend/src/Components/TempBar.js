@@ -12,8 +12,8 @@ const {  Content, Footer } = Layout;
 
 const TempBar = props =>{
 
-    console.log("Esto esta en bar " + props.tempVal);
-
+    //console.log("Esto esta en bar " + props.tempVal);
+    
     const data = {
       labels: ['Temperature'],
       datasets: [

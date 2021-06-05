@@ -44,7 +44,7 @@ const TrackingMap = props =>{
     
     </Marker> 
 
-    <Marker key={"UPITTA"} latitude={19.5123} longitude={-99.1266}>
+    <Marker key={"UPITTA2"} latitude={19.5123} longitude={-99.1266}>
     <Button   style={{backgroundColor:'rgba(255,255,255,0)', borderColor:'rgba(255,255,255,0)'}}>
              <img src={gs} style={{height:'70px', width:'70px'}}></img>   
                 </Button>

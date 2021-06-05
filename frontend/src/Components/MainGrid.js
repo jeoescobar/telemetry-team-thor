@@ -11,6 +11,16 @@ import TrackingMap from './TrackingMap'
 import io from 'socket.io-client';
 import {useEffect, useState } from 'react';
 
+import {
+    BarChart,
+    
+    Line,
+    LineChart,
+    XAxis,
+    YAxis,
+    Tooltip
+} from 'recharts';
+
 const {  Content, Footer } = Layout;
 const socket = io('http://localhost:4000',{
     transports: ['websocket', 'polling']
@@ -70,26 +80,39 @@ const MainGrid = props =>{
     const [ALTITUDE, setALTITUDE] = useState([]);
     const [Altcurr, setAltcurr] = useState(0);
     
+    const [ALTITUDE1, setALTITUDE1] = useState(0);
+    const [ALTITUDE2, setALTITUDE2] = useState(0);
+    const [ALTITUDE3, setALTITUDE3] = useState(0);
+    const [ALTITUDE4, setALTITUDE4] = useState(0);
+    
 
     useEffect(()=>{
         socket.on('payloadContainer', (newPayload) =>{
             //setData((currentData) =>{[...data,cpuPercent]});
             //setData(currentData =>[currentData,newPayload]);
-            console.log("ESToooo \n");
-            console.log(newPayload);
+            //console.log("ESToooo \n");
+            //console.log(newPayload);
 
             //setTEAMID(TEAMID =>[...TEAMID,..."newPayload"]);
             setTEAMID(newPayload.value.teamname);
             setTEMP(newPayload.value.TEMP);
             setVOLTAGE(newPayload.value.VOLTAGE);
             //setALTITUDE(newPayload.value.ALTITUDE);
-            setALTITUDE(currentAltitude =>[...currentAltitude,newPayload.value.ALTITUDE]);
+            //setALTITUDE(currentAltitude =>[...currentAltitude,newPayload.value.ALTITUDE]);
+            
+            
+            //setALTITUDE(...ALTITUDE,newPayload.value.ALTITUDE);
+            setALTITUDE3(Altcurr);
+            setALTITUDE2(ALTITUDE3);
+            setALTITUDE1(ALTITUDE2);
+
             setAltcurr(newPayload.value.ALTITUDE);
+            
             //console.log(newPayload.value.teamname);
             
         });
     })
-
+    
 
 
     return(
@@ -164,7 +187,12 @@ const MainGrid = props =>{
         <Row style={{"margin-bottom": "30px","backgroundColor":"rgba(14,21,53,0.7)"}}>
         {/*Altitude vs time */ }
         <Col xs={11} sm={11} md={11} lg={11} xl={11} style={{marginLeft:"10px",marginRight:"10px",marginBottom:"10px", marginTop:"10px"}}>
-        <Rotation uscolor={'rgb(144, 12, 63)'} usheight = {250} uswidth={700} uslabel={"Altitude vs Time"}/>
+        
+        <Rotation uscolor={'rgb(144, 12, 63)'} usheight = {250} uswidth={700} uslabel={"Altitude vs Time"} AltVal = {[ALTITUDE1,ALTITUDE2,ALTITUDE3,Altcurr]} />
+        
+
+
+
         <Tag color="#0E1535" style={{marginTop:"10px", fontSize: '20px'}}>Altitude:  {Altcurr}</Tag> <br/>
         </Col>
 
